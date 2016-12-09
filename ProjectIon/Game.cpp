@@ -17,6 +17,7 @@
 #include <string>
 #include <vld.h>
 
+
 Game* Game::sm_pInstance = 0;
 const int WindowWidth = 800;
 const int WindowHeight = 600;
@@ -35,6 +36,7 @@ SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
 Game&
 Game::GetInstance()
 {
+
 	if (sm_pInstance == 0)
 	{
 		sm_pInstance = new Game();
