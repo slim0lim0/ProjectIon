@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Library Testing">
+      <UniqueIdentifier>{f51e0cf6-792f-406b-82cf-411c36ba3c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics Core">
+      <UniqueIdentifier>{64161a96-b31a-4e18-9469-9e212aa47caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events Core">
+      <UniqueIdentifier>{83a94eac-e1e3-487b-8c43-b8e639d35997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Core">
+      <UniqueIdentifier>{ed516199-3338-49fa-8d19-bffbb4e2b625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Management">
+      <UniqueIdentifier>{de0d6f20-fcc6-4308-a330-52486e38db49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object Core">
+      <UniqueIdentifier>{210635b7-7d06-46ca-addc-1363f0e6f0a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{c063f721-75bc-426f-b634-3793af5fd6ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{6c1a277b-0793-44af-93df-93c0d7acd866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Sprites">
+      <UniqueIdentifier>{3a241748-1e24-40e4-b241-e96673553a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Backgrounds">
+      <UniqueIdentifier>{7fc78bfe-fc51-4ccd-9558-ac3766d5ca03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level Manager">
+      <UniqueIdentifier>{60d34067-8641-4715-8890-af8e14b93a6b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LibTest.cpp">
+      <Filter>Library Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files\Graphics Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Graphics Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Graphics Core</Filter>
+    </ClCompile>
+    <ClCompile Include="BackBuffer.cpp">
+      <Filter>Source Files\Graphics Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Source Files\Events Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Game Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game Core</Filter>
+    </ClCompile>
+    <ClCompile Include="LogManager.cpp">
+      <Filter>Source Files\Game Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Object Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerPlayer.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Object Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerBackground.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Source Files\Object Core</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files\Level Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Source Files\Level Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMask.cpp">
+      <Filter>Source Files\Level Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Level Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing\33_file_reading_and_writing.cpp">
+      <Filter>Library Testing</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BackBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Sprites\Player.png">
+      <Filter>Assets\Sprites</Filter>
+    </Image>
+    <Image Include="Assets\Backgrounds\GrassMain.jpg">
+      <Filter>Assets\Backgrounds</Filter>
+    </Image>
+    <Image Include="Testing\bg.png">
+      <Filter>Library Testing</Filter>
+    </Image>
+    <Image Include="Testing\dot.bmp">
+      <Filter>Library Testing</Filter>
+    </Image>
+    <Image Include="Testing\tiles.png">
+      <Filter>Library Testing</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Testing\lazy.map">
+      <Filter>Library Testing</Filter>
+    </None>
+  </ItemGroup>
+</Project>
