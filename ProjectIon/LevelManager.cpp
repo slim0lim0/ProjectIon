@@ -174,28 +174,45 @@ LevelManager::LoadTileMap(BackBuffer& backBuffer, const char* spriteSheet, const
 void
 LevelManager::Process(float deltaTime)
 {
-	for each(Tile* t in m_levelMaskTiles)
-	{
-		t->Process(deltaTime);
-	}
-
-	/*for each(Tile* t in m_levelSpriteTiles)
+	/*for each(Tile* t in m_levelMaskTiles)
 	{
 		t->Process(deltaTime);
 	}*/
+
+	for each(Tile* tSprite in m_levelSpriteTiles)
+	{
+		tSprite->Process(deltaTime);
+	}
+
+	for each(Tile* tMask in m_levelMaskTiles)
+	{
+		tMask->Process(deltaTime);
+	}
 
 }
 
 void
 LevelManager::Draw(BackBuffer& backBuffer)
 {
-	for each(Tile* t in m_levelMaskTiles)
+	//for each(Tile* t in m_levelMaskTiles)
+	//{
+	//	t->Draw(backBuffer);
+	//}
+
+	for each(Tile* t in m_levelSpriteTiles)
 	{
 		t->Draw(backBuffer);
 	}
+}
 
-	/*for each(Tile* t in m_levelSpriteTiles)
-	{
-		t->Draw(backBuffer);
-	}*/
+vector<Tile*>
+LevelManager::GetTilesSprite()
+{
+	return m_levelSpriteTiles;
+}
+
+vector<Tile*>
+LevelManager::GetTilesMask()
+{
+	return m_levelMaskTiles;
 }

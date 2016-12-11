@@ -13,6 +13,8 @@
 class Sprite;
 class BackBuffer;
 
+#include <Box2D/Box2D.h>
+
 class Entity
 {
 
@@ -41,6 +43,9 @@ public:
 	float GetWidth();
 	float GetHeight();
 
+	b2Body* GetBody();
+	void SetBody(b2Body* body);
+
 	bool Exists();
 
 private:
@@ -58,6 +63,8 @@ protected:
 	float m_velocityX;
 
 	bool m_bExists;
+
+	b2Body* m_pBody;
 };
 
 #endif

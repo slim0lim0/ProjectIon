@@ -20,9 +20,9 @@ BackBuffer::BackBuffer()
 , m_pRenderer(0)
 , m_width(0)
 , m_height(0)
-, m_clearRed(0000)
-, m_clearBlue(0000)
-, m_clearGreen(0000)
+, m_clearRed(0x40)
+, m_clearBlue(0xC0)
+, m_clearGreen(0x40)
 {
 
 }

@@ -10,6 +10,7 @@
 // Library includes:
 #include <cassert>
 #include <cmath>
+#include <Box2D/Box2D.h>
 
 Entity::Entity()
 : m_bExists(true)
@@ -17,6 +18,7 @@ Entity::Entity()
 , m_y(-500.0f)
 , m_velocityY(0.0f)
 , m_velocityX(0.0f)
+, m_pBody(0)
 {
 
 }
@@ -120,4 +122,16 @@ bool
 Entity::Exists()
 {
 	return (m_bExists);
+}
+
+b2Body*
+Entity::GetBody()
+{
+	return m_pBody;
+}
+
+void
+Entity::SetBody(b2Body* body)
+{
+	m_pBody = body;
 }

@@ -8,6 +8,7 @@
 #include "LogManager.h"
 #include "Sprite.h"
 #include "LevelManager.h"
+#include "Physics.h"
 
 // Library Includes:
 
@@ -31,7 +32,7 @@ const int CAMERA_HEIGHT = 600;
 int longTest = 0;
 
 
-SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
+//SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
 
 Game&
 Game::GetInstance()
@@ -80,6 +81,7 @@ bool
 Game::Initialise()
 {
 	VLDEnable();
+
 	m_pBackBuffer = new BackBuffer();
 	if (!m_pBackBuffer->Initialise(WindowWidth, WindowHeight))
 	{
@@ -87,8 +89,15 @@ Game::Initialise()
 		return(false);
 	}
 
+	m_pPhysics = new Physics();
+	if (!m_pPhysics->Initialise())
+	{
+		LogManager::GetInstance().Log("Physics Init Failed");
+		return (false);
+	}
+
 	m_pControllerPlayer = new ControllerPlayer();
-	if (!m_pControllerPlayer->Initialise(*m_pBackBuffer))
+	if (!m_pControllerPlayer->Initialise(*m_pBackBuffer, *m_pPhysics))
 	{
 		LogManager::GetInstance().Log("Player Controller Init Failed");
 		return (false);
@@ -129,7 +138,7 @@ Game::DoGameLoop()
 	if (m_looping)
 	{
 		int current = SDL_GetTicks();
-		float deltaTime = (current - m_lastTime) / 1000.0f;
+		float deltaTime = (current - m_lastTime) / 300.0f;
 		m_lastTime = current;
 		
 		m_executionTime += deltaTime;
@@ -175,9 +184,9 @@ Game::Process(float deltaTime)
 
 
 	// Player Controller Process
-
+	m_pPhysics->Process(deltaTime);
 	
-	m_pControllerPlayer->Process(deltaTime, LEVEL_WIDTH, LEVEL_HEIGHT);
+	m_pControllerPlayer->Process(deltaTime, 0, 0);
 	//m_pControllerBackground->Process(deltaTime, m_pControllerPlayer->GetPlayer());
 
 
@@ -186,7 +195,8 @@ Game::Process(float deltaTime)
 
 	//Adjust Camera
 
-	AdjustCamera();
+	//AdjustCamera();
+
 	// Do Process
 
 
@@ -203,11 +213,11 @@ Game::Draw(BackBuffer& backBuffer)
 	
 
 	// Level Draw();
-	
-
-	m_pControllerPlayer->Draw(backBuffer);
 	m_pLevelManager->Draw(backBuffer);
+
+	
 	// Draw Objects
+	m_pControllerPlayer->Draw(backBuffer);
 
 	backBuffer.Present();
 }
@@ -230,28 +240,29 @@ Game::SetBackground(BackBuffer& backBuffer)
 void
 Game::AdjustCamera()
 {
-	Player& player = m_pControllerPlayer->GetPlayer();
+	//Player& player = m_pControllerPlayer->GetPlayer();
 
-	camera.x = (player.GetPositionX() + player.GetWidth() / 2) - CAMERA_WIDTH / 2;
-	camera.y = (player.GetPositionY() + player.GetHeight() / 2) - CAMERA_HEIGHT / 2;
+	//camera.x = (player.GetPositionX() + player.GetWidth() / 2) - CAMERA_WIDTH / 2;
+	//camera.y = (player.GetPositionY() + player.GetHeight() / 2) - CAMERA_HEIGHT / 2;
 
-	if (camera.x < 0)
-	{
-		camera.x = 0;
-	}
-	if (camera.y < 0)
-	{
-		camera.y = 0;
-	}
-	if (camera.x > LEVEL_WIDTH - camera.w)
-	{
-		camera.x = LEVEL_WIDTH - camera.w;
-	}
-	if (camera.y > LEVEL_HEIGHT - camera.h)
-	{
-		camera.y = LEVEL_HEIGHT - camera.h;
-	}
+	//if (camera.x < 0)
+	//{
+	//	camera.x = 0;
+	//}
+	//if (camera.y < 0)
+	//{
+	//	camera.y = 0;
+	//}
+	//if (camera.x > LEVEL_WIDTH - camera.w)
+	//{
+	//	camera.x = LEVEL_WIDTH - camera.w;
+	//}
 
-	m_pBackBuffer->SetCamera(camera.x, camera.y, camera.w, camera.h);
+	//if (camera.y > LEVEL_HEIGHT - camera.h)
+	//{
+	//	camera.y = LEVEL_HEIGHT - camera.h;
+	//}
+
+	//m_pBackBuffer->SetCamera(camera.x, camera.y, camera.w, camera.h);
 
 }

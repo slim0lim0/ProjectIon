@@ -7,6 +7,7 @@ class InputHandler;
 class ControllerPlayer;
 class ControllerBackground;
 class LevelManager;
+class Physics;
 
 class Game
 {
@@ -45,6 +46,7 @@ protected:
 	InputHandler* m_pInputHandler;
 	ControllerPlayer* m_pControllerPlayer;
 	ControllerBackground* m_pControllerBackground;
+	Physics* m_pPhysics;
 	bool m_looping;
 
 	// Simulation Counters:

@@ -5,7 +5,7 @@
 #include "BackBuffer.h"
 #include "Sprite.h"
 #include "LogManager.h"
-
+#include "Physics.h"
 // Library Includes:
 
 static const float m_playerSpeed = 800.0;
@@ -29,9 +29,9 @@ ControllerPlayer::~ControllerPlayer()
 }
 
 bool
-ControllerPlayer::Initialise(BackBuffer& backBuffer)
+ControllerPlayer::Initialise(BackBuffer& backBuffer, Physics& physics)
 {
-	if(!CreatePlayer(backBuffer))
+	if(!CreatePlayer(backBuffer, physics))
 	{
 		LogManager::GetInstance().Log("Player Controller Init Failed");
 		return(false);
@@ -65,7 +65,7 @@ ControllerPlayer::Draw(BackBuffer& backBuffer)
 }
 
 bool
-ControllerPlayer::CreatePlayer(BackBuffer& backBuffer)
+ControllerPlayer::CreatePlayer(BackBuffer& backBuffer, Physics& physics)
 {
 	if (!CreatePlayerSprite(backBuffer))
 	{
@@ -79,6 +79,8 @@ ControllerPlayer::CreatePlayer(BackBuffer& backBuffer)
 		LogManager::GetInstance().Log("Player Init Failed");
 		return(false);
 	}
+
+	m_pPlayer->SetBody(physics.CreatePlayer());
 
 	return(true);
 }

@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Level Manager">
       <UniqueIdentifier>{60d34067-8641-4715-8890-af8e14b93a6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{56833ab5-bce9-4c9d-acc6-1b89225dd2e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LibTest.cpp">
@@ -105,6 +108,9 @@
     <ClCompile Include="Testing\33_file_reading_and_writing.cpp">
       <Filter>Library Testing</Filter>
     </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -150,6 +156,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

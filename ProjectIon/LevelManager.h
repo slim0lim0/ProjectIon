@@ -34,6 +34,9 @@ public:
 	// Temporary Level Method
 	bool CreateTest();
 
+	vector<Tile*> GetTilesSprite();
+	vector<Tile*> GetTilesMask();
+
 	// Member Data
 public:
 
