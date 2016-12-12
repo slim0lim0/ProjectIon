@@ -21,9 +21,23 @@ Player::Process(float deltaTime, int LevelWidth, int LevelHeight)
 
 	if (m_pBody != 0)
 	{
-		b2Vec2 linearVelocity(10.0f * 100, 0.0f * 100);
-		m_pBody->SetLinearVelocity(linearVelocity);
 		b2Vec2 bodyVector = m_pBody->GetPosition();
+		b2Vec2 CurrentVelocity = m_pBody->GetLinearVelocity();
+		b2Vec2 CollideVelocity(CurrentVelocity.x, 0.0f);
+		b2Vec2 GravityVelocity(CurrentVelocity.x, 9.8);
+
+		if (m_y > 500 && m_pBody->GetGravityScale() != 0)
+		{
+			m_pBody->SetGravityScale(0);
+			m_pBody->SetLinearVelocity(CollideVelocity);
+			//bodyVector.y = m_y;
+		}
+		else if( m_y <= 500 && m_pBody->GetGravityScale() == 0)
+		{
+			m_pBody->SetGravityScale(1);
+			m_pBody->SetLinearVelocity(GravityVelocity);
+		}
+			
 		
 		m_x = bodyVector.x;
 		m_y = bodyVector.y;

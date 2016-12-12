@@ -2,6 +2,7 @@
 #define __LEVEL_MANAGER_H__
 
 // Local Includes:
+#include "ControllerPlayer.h"
 
 // Library Includes:
 #include <vector>
@@ -28,8 +29,11 @@ public:
 
 	bool PrepareLevel(BackBuffer& backBuffer, const char* LevelName);
 
-	void Process(float deltaTime);
+	void Process(float deltaTime, ControllerPlayer& playerController);
 	void Draw(BackBuffer& backBuffer);
+
+	bool CheckTileCollisionOuter(Tile& tile, float xStart, float xEnd, float yStart, float yEnd);
+	bool CheckTileCollisionInner(Tile& tile, float xStart, float xEnd, float yStart, float yEnd);
 
 	// Temporary Level Method
 	bool CreateTest();

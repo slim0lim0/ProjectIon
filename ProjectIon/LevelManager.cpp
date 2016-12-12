@@ -5,6 +5,7 @@
 
 #include "TileMap.h"
 #include "Tile.h"
+#include "Texture.h"
 
 #include <SDL.h>
 
@@ -172,12 +173,17 @@ LevelManager::LoadTileMap(BackBuffer& backBuffer, const char* spriteSheet, const
 }
 
 void
-LevelManager::Process(float deltaTime)
+LevelManager::Process(float deltaTime, ControllerPlayer& playerController)
 {
 	/*for each(Tile* t in m_levelMaskTiles)
 	{
 		t->Process(deltaTime);
 	}*/
+
+	float xStart = playerController.GetPlayer().GetPositionX();
+	float xEnd = xStart + playerController.GetPlayer().GetWidth();
+	float yStart = playerController.GetPlayer().GetPositionY();
+	float yEnd = yStart + playerController.GetPlayer().GetHeight();
 
 	for each(Tile* tSprite in m_levelSpriteTiles)
 	{
@@ -186,9 +192,15 @@ LevelManager::Process(float deltaTime)
 
 	for each(Tile* tMask in m_levelMaskTiles)
 	{
+		if (CheckTileCollisionOuter(*tMask, xStart, xEnd, yStart, yEnd))
+		{
+			if (CheckTileCollisionInner(*tMask, xStart, xEnd, yStart, yEnd))
+			{
+				playerController.StopPlayerVelocityX();
+			}			
+		}
 		tMask->Process(deltaTime);
 	}
-
 }
 
 void
@@ -215,4 +227,33 @@ vector<Tile*>
 LevelManager::GetTilesMask()
 {
 	return m_levelMaskTiles;
+}
+
+bool
+LevelManager::CheckTileCollisionOuter(Tile& tile, float xStart, float xEnd, float yStart, float yEnd)
+{
+	if (tile.GetX() >= xStart && tile.GetX() <= xEnd && tile.GetY() >= yStart && tile.GetY() <= yEnd)
+		return true;
+	else
+		return false;
+}
+
+bool
+LevelManager::CheckTileCollisionInner(Tile& tile, float xStart, float xEnd, float yStart, float yEnd)
+{
+	bool result = false;
+
+	tile.GetSprite().LockTexture();
+
+	Uint32* tilePixels = (Uint32*)tile.GetSprite().GetPixels();
+
+	if (tile.GetX() >= xStart && tile.GetX() <= xEnd && tile.GetY() >= yStart && tile.GetY() <= yEnd)
+		result = true;
+	else
+		result = false;
+
+
+	tile.GetSprite().UnlockTexture();
+
+	return result;
 }

@@ -78,3 +78,10 @@ Tile::GetY()
 {
 	return(m_y);
 }
+
+Sprite&
+Tile::GetSprite()
+{
+	assert(m_pSprite);
+	return(*m_pSprite);
+}

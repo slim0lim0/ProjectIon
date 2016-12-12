@@ -22,6 +22,8 @@ public:
 	int GetX();
 	int GetY();
 
+	Sprite& GetSprite();
+
 	bool Initialise(Sprite* sprite);
 
 	void Process(float deltaTime);

@@ -8,7 +8,9 @@
 #include "Physics.h"
 // Library Includes:
 
-static const float m_playerSpeed = 800.0;
+static const float m_playerSpeed = 1.0f;
+
+static const float PPM = 100;
 
 static const bool m_playerCameraControlled = false;
 
@@ -116,40 +118,54 @@ ControllerPlayer::CenterPlayer()
 {
 	m_pPlayer->SetPositionX(100);
 	m_pPlayer->SetPositionY(100);
+	b2Body& body = *m_pPlayer->GetBody();
+	body.SetTransform(b2Vec2(100, 100), body.GetAngle());
 }
 
 void
 ControllerPlayer::MovePlayerRight()
 {
-	m_pPlayer->SetHorizontalVelocity(m_playerSpeed);
+	b2Body& body = *m_pPlayer->GetBody();
+	b2Vec2 velocity(m_playerSpeed * PPM, body.GetLinearVelocity().y);
+	body.SetLinearVelocity(velocity);
+	//m_pPlayer->SetHorizontalVelocity(m_playerSpeed);
 }
 
 void
 ControllerPlayer::MovePlayerLeft()
 {
+	b2Body& body = *m_pPlayer->GetBody();
+	b2Vec2 velocity(-m_playerSpeed * PPM, body.GetLinearVelocity().y);
+	body.SetLinearVelocity(velocity);
 	m_pPlayer->SetHorizontalVelocity(-(m_playerSpeed));
 }
 
 void
 ControllerPlayer::MovePlayerDown()
 {
-	m_pPlayer->SetVerticalVelocity(m_playerSpeed);
+	//m_pPlayer->SetVerticalVelocity(m_playerSpeed);
 }
 
 void
 ControllerPlayer::MovePlayerUp()
 {
-	m_pPlayer->SetVerticalVelocity(-(m_playerSpeed));
+	//m_pPlayer->SetVerticalVelocity(-(m_playerSpeed));
 }
 
 void
 ControllerPlayer::StopPlayerVelocityX()
 {
+	b2Body& body = *m_pPlayer->GetBody();
+	b2Vec2 velocity(0, body.GetLinearVelocity().y);
+	body.SetLinearVelocity(velocity);
 	m_pPlayer->SetHorizontalVelocity(0);
 }
 
 void
 ControllerPlayer::StopPlayerVelocityY()
 {
+	b2Body& body = *m_pPlayer->GetBody();
+	b2Vec2 velocity(body.GetLinearVelocity().x, 0);
+	body.SetLinearVelocity(velocity);
 	m_pPlayer->SetVerticalVelocity(0);
 }

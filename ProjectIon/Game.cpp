@@ -191,7 +191,7 @@ Game::Process(float deltaTime)
 
 
 	// Process Level
-	m_pLevelManager->Process(deltaTime);
+	m_pLevelManager->Process(deltaTime, *m_pControllerPlayer);
 
 	//Adjust Camera
 

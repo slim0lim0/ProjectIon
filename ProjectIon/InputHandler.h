@@ -18,6 +18,8 @@ public:
 	bool Initialise(ControllerPlayer& controllerPlayer);
 	void ProcessInput();
 
+	bool CheckMovement();
+
 protected:
 
 private:

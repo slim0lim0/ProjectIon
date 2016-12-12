@@ -51,6 +51,10 @@ Texture::Initialise(const char* pcFileName, SDL_Renderer* pRenderer)
 	{
 		Uint32 colorKey = SDL_MapRGB(pSurface->format, 0x40, 0x40, 0xC0);
 		SDL_SetColorKey(pSurface, 1, colorKey);
+		//SDL_Surface* formattedSurface = SDL_ConvertSurface(pSurface, SDL_GetWindowSurface(m_pWindow)->format, NULL);
+
+		//m_pTexture = SDL_CreateTexture(m_pRenderer, SDL_GetWindowPixelFormat(m_pWindow), SDL_TEXTUREACCESS_STREAMING, pSurface->w, pSurface->h);
+
 		m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pSurface);
 
 		if (m_pTexture == 0)
