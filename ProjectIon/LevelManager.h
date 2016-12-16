@@ -6,6 +6,7 @@
 
 // Library Includes:
 #include <vector>
+#include <SDL.h>
 
 // Forward Declarations
 class Tile;
@@ -32,14 +33,21 @@ public:
 	void Process(float deltaTime, ControllerPlayer& playerController);
 	void Draw(BackBuffer& backBuffer);
 
-	bool CheckTileCollisionOuter(Tile& tile, float xStart, float xEnd, float yStart, float yEnd);
-	bool CheckTileCollisionInner(Tile& tile, float xStart, float xEnd, float yStart, float yEnd);
+	bool CheckTileCollision(Tile& tile, const SDL_Rect& boundsA, const SDL_Rect& boundsB);
 
-	// Temporary Level Method
-	bool CreateTest();
+	int CheckTilePosition(const SDL_Rect& boundsA, const SDL_Rect& boundsB);
+
 
 	vector<Tile*> GetTilesSprite();
 	vector<Tile*> GetTilesMask();
+
+private:
+
+	SDL_Rect Intersection(const SDL_Rect& boundsA, const SDL_Rect& boundsB);
+	static bool GetAlphaXY(Uint32* pixels, int x, int y);
+	// Temporary Level Method
+	bool CreateTest();
+
 
 	// Member Data
 public:

@@ -116,10 +116,10 @@ ControllerPlayer::RemovePlayerSprite()
 void 
 ControllerPlayer::CenterPlayer()
 {
-	m_pPlayer->SetPositionX(100);
+	m_pPlayer->SetPositionX(350);
 	m_pPlayer->SetPositionY(100);
 	b2Body& body = *m_pPlayer->GetBody();
-	body.SetTransform(b2Vec2(100, 100), body.GetAngle());
+	body.SetTransform(b2Vec2(m_pPlayer->GetPositionX(), m_pPlayer->GetPositionY()), body.GetAngle());
 }
 
 void
@@ -165,6 +165,7 @@ void
 ControllerPlayer::StopPlayerVelocityY()
 {
 	b2Body& body = *m_pPlayer->GetBody();
+	body.SetGravityScale(0);
 	b2Vec2 velocity(body.GetLinearVelocity().x, 0);
 	body.SetLinearVelocity(velocity);
 	m_pPlayer->SetVerticalVelocity(0);

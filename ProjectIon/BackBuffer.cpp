@@ -21,8 +21,8 @@ BackBuffer::BackBuffer()
 , m_width(0)
 , m_height(0)
 , m_clearRed(0x40)
-, m_clearBlue(0xC0)
 , m_clearGreen(0x40)
+, m_clearBlue(0xC0)
 {
 
 }
@@ -288,6 +288,8 @@ BackBuffer::GetRenderer()
 SDL_Texture*
 BackBuffer::ClipTexture(int width, int height, void* pixels, int pitch, bool IsMask)
 {
+	//BasePixelFormat* baseFormat = new BasePixelFormat();
+
 	SDL_Surface* loadedSurface = NULL;
 	int depth = pitch / 4;
 
@@ -303,9 +305,34 @@ BackBuffer::ClipTexture(int width, int height, void* pixels, int pitch, bool IsM
 		loadedSurface = SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, 0, 0, 0, 0);
 	}
 
+	Uint32* PixelsToModify = (Uint32*) pixels;
 
-	//SDL_Texture* texture = SDL_CreateTexture(m_pRenderer, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_TARGET, width, height);
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(GetRenderer(), loadedSurface);
+	for (int y = 0; y < height; y++)
+	{
+		for (int x = 0; x < width; x++)
+		{		
+			if (PixelsToModify[x + (y*height)] == 4290789440)
+				PixelsToModify[x + (y*height)] = 12599360;
+		}
+	}
+
+	SDL_Texture* texture = SDL_CreateTexture(m_pRenderer, 376840196, SDL_TEXTUREACCESS_STREAMING, width, height);
+
+	void* newPixels;
+	int newPitch;
+	//Lock texture for manipulation
+	SDL_LockTexture(texture, NULL, &newPixels, &newPitch);
+
+	//Copy loaded/formatted surface pixels
+	memcpy(newPixels, PixelsToModify, pitch * height);
+
+	//Unlock texture to update
+	SDL_UnlockTexture(texture);
+	newPixels = NULL;
+	PixelsToModify = NULL;
+	//Get image dimensions
+
+	//SDL_Texture* texture = SDL_CreateTextureFromSurface(GetRenderer(), loadedSurface);
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 	/*SDL_SetRenderTarget(pRenderer, texture);
 	SDL_RenderCopy(pRenderer, texture, &rect, NULL);*/
@@ -319,3 +346,25 @@ BackBuffer::ClipTexture(int width, int height, void* pixels, int pitch, bool IsM
 	//SDL_Texture* texture = SDL_CreateTextureFromSurface(pRenderer, surface);
 	return texture;
 }
+
+//struct BasePixelFormat
+//{
+//	SDL_PixelFormat* alphaFormat;
+//
+//	BasePixelFormat()
+//	{
+//		alphaFormat = new SDL_PixelFormat();
+//		alphaFormat->format = 376840196;
+//		alphaFormat->palette = 0x0;
+//		alphaFormat->BitsPerPixel = 32;
+//		alphaFormat->BytesPerPixel = 4;
+//		alphaFormat->Rmask = 255;
+//		alphaFormat->Gmask = 65280;
+//		alphaFormat->Bmask = 16711680;
+//		alphaFormat->Amask = 4278190080;
+//		alphaFormat->Rmask = 0;
+//		alphaFormat->Gmask = 8;
+//		alphaFormat->Bmask = 16;
+//		alphaFormat->Amask = 24;
+//	}
+//};

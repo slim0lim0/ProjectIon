@@ -107,7 +107,7 @@ Texture::Initialise(const char* pcFileName, SDL_Window* pWindow, SDL_Renderer* p
 
 	else
 	{
-		SDL_Surface* formattedSurface = SDL_ConvertSurface(pSurface, SDL_GetWindowSurface(m_pWindow)->format, NULL);
+		SDL_Surface* formattedSurface = SDL_ConvertSurface(pSurface, pSurface->format, NULL);
 		if (formattedSurface == NULL)
 		{
 			printf("Unable to convert loaded surface to display format! SDL Error: %s\n", SDL_GetError());
@@ -117,7 +117,7 @@ Texture::Initialise(const char* pcFileName, SDL_Window* pWindow, SDL_Renderer* p
 			Uint32 colorKey = SDL_MapRGB(formattedSurface->format, 0x40, 0x40, 0xC0);
 			SDL_SetColorKey(formattedSurface, 1, colorKey);
 			
-			m_pTexture = SDL_CreateTexture(m_pRenderer, SDL_GetWindowPixelFormat(m_pWindow), SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h);
+			m_pTexture = SDL_CreateTexture(m_pRenderer,pSurface->format->format, SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h);
 	
 			if (m_pTexture == 0)
 			{

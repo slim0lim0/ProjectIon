@@ -111,7 +111,7 @@ Game::Initialise()
 	}
 
 	m_pLevelManager = new LevelManager();
-	m_pLevelManager->PrepareLevel(*m_pBackBuffer, "Assets\\Levels\\Castle2.txt");
+	m_pLevelManager->PrepareLevel(*m_pBackBuffer, "Assets\\Levels\\Castle3.txt");
 
 
 	m_lastTime = SDL_GetTicks();
@@ -181,7 +181,7 @@ Game::Process(float deltaTime)
 
 	// Process Game System
 
-
+	m_pLevelManager->Process(deltaTime, *m_pControllerPlayer);
 
 	// Player Controller Process
 	m_pPhysics->Process(deltaTime);
@@ -191,7 +191,7 @@ Game::Process(float deltaTime)
 
 
 	// Process Level
-	m_pLevelManager->Process(deltaTime, *m_pControllerPlayer);
+
 
 	//Adjust Camera
 

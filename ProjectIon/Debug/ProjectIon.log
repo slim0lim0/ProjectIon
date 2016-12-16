@@ -1,4 +1,7 @@
-﻿Build started 12/12/2016 8:52:58 PM.
+﻿Build started 12/16/2016 11:05:09 PM.
+     1>Project "C:\Users\Liam\Documents\Visual Studio 2013\Projects\ProjectIon\ProjectIon\ProjectIon.vcxproj" on node 2 (Clean target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\users\liam\documents\visual studio 2013\projects\projection\debug\projection.ilk' because it is being used by another process.
+     1>Done Building Project "C:\Users\Liam\Documents\Visual Studio 2013\Projects\ProjectIon\ProjectIon\ProjectIon.vcxproj" (Clean target(s)).
 
 Build succeeded.
 

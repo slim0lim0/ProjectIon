@@ -1,0 +1,11 @@
+Format
+format=376840196
+pallete=0x0
+BitsPerPixel=32
+BytesPerPixel=4
+Rmask = 255
+Gmask = 65280
+Bmask = 16711680
+Amask = 4278190080
+Loss = 0
+refcount = 1
